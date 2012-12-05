@@ -1,5 +1,5 @@
-count = 2
-flavor = :ubuntu
+count = (ENV['count'] or 1).to_i
+flavor = (ENV['flavor'] or :ubuntu).to_sym
 
 Vagrant::Config.run do |config|
   count.times do |number|
