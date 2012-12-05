@@ -1,6 +1,10 @@
 count = (ENV['count'] or 1).to_i
 flavor = (ENV['flavor'] or :ubuntu).to_sym
 
+if ARGV.first == "destroy"
+  count = JSON.parse(File.read('.vagrant'))["active"].keys.count rescue count
+end
+
 Vagrant::Config.run do |config|
   count.times do |number|
     name = "box#{number}"
