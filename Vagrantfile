@@ -7,6 +7,7 @@ end
 
 Vagrant::Config.run do |config|
   count.times do |number|
+    number += 1
     name = "box#{number}"
 
     config.vm.define name do |box|
