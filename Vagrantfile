@@ -10,7 +10,7 @@ when :ubuntu
   box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-12.04.box"
 end
 
-Vagrant::Config.run do |config|
+Vagrant.configure('2') do |config|
   count.times do |number|
     number += 1
     name = "box#{number}"
@@ -18,8 +18,8 @@ Vagrant::Config.run do |config|
     config.vm.define name do |box|
       box.vm.box = box_name
       box.vm.box_url = box_url
-      box.vm.host_name = name
-      box.vm.network :hostonly, "33.33.33.#{100 + number}"
+      box.vm.hostname = name
+      box.vm.network :private_network, ip: "33.33.33.#{100 + number}"
     end
   end
 
